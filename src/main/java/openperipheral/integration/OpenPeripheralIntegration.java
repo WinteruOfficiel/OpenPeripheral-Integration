@@ -24,6 +24,7 @@ import openperipheral.integration.buildcraft.ModuleBuildCraftFacades;
 import openperipheral.integration.buildcraft.ModuleBuildCraftTile;
 import openperipheral.integration.buildcraft.ModuleBuildCraftTransport;
 import openperipheral.integration.cofh.energy.ModuleCofhEnergy;
+import openperipheral.integration.EnderIO.ModuleEnderIO;
 import openperipheral.integration.cofh.inventory.ModuleCofhInventory;
 import openperipheral.integration.cofh.item.ModuleCofhItem;
 import openperipheral.integration.cofh.tileentity.ModuleCofhTileEntity;
@@ -140,6 +141,8 @@ public class OpenPeripheralIntegration {
 		if (checkConfig(config, "tmechworks-mod")) Integration.addModule(new ModuleTMechworks());
 		if (checkConfig(config, "thermalexpansion-mod")) Integration.addModule(new ModuleThermalExpansion());
 		if (checkConfig(config, "ae2-mod")) Integration.addModule(new ModuleAppEng());
+
+		Integration.addModule(new ModuleEnderIO());
 
 		ConfigProcessing.processAnnotations(MOD_ID, config, Config.class);
 

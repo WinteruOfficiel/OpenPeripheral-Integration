@@ -15,6 +15,8 @@ public abstract class ApiIntegrationModule implements IIntegrationModule {
 	@Override
 	public boolean canLoad() {
 		final String apiId = getApiId();
+		System.out.println("Checking for API: " + apiId);
+		System.out.println("API found: " + ModAPIManager.INSTANCE.hasAPI(apiId));
 		return ModAPIManager.INSTANCE.hasAPI(apiId);
 	}
 }

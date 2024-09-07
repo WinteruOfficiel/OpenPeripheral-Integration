@@ -15,6 +15,8 @@ public abstract class ModIntegrationModule implements IIntegrationModule {
 	@Override
 	public boolean canLoad() {
 		final String modId = getModId();
+		System.out.println("Checking for mod: " + modId);
+		System.out.println("Mod found: " + Loader.isModLoaded(modId));
 		return Loader.isModLoaded(modId);
 	}
 }
