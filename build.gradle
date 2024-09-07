@@ -8,13 +8,13 @@
 
 buildscript {
     repositories {
+        flatDir {
+            dirs 'libs'
+        }
         // General deps
+        mavenLocal()
         mavenCentral()
         // Minecraft Forge
-        maven {
-            name = 'Forge'
-            url = 'http://files.minecraftforge.net/maven'
-        }
         // Sonatype (for SpecialSource in 1.7+)
         maven {
             name = "Sonatype Nexus"
@@ -23,11 +23,18 @@ buildscript {
     }
 
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath ('com.anatawa12.forge:ForgeGradle:1.2-1.1.+') {
+            changing = true
+        }
     }
 }
 
 repositories {
+    mavenLocal()
+
+    flatDir {
+        dirs 'libs'
+    }
     maven {
         name = "ic2, forestry"
         url = "http://maven.ic2.player.to/"
@@ -64,19 +71,26 @@ apply plugin: 'forge'
 dependencies {
     compile project(":OpenModsLib") // Load OpenModsLib from submodule
 
-    compile "openperipheral:OpenPeripheralCore-API:" + opc_api_version
+    // compile "openperipheral:OpenPeripheralCore-API:" + opc_api_version
+    compile (name: "OpenPeripheralCore-API-" + opc_api_version, ext: 'jar')
 
-    compile ("appeng:appliedenergistics2:rv2-stable-10:dev") {
+    compile (name: "appliedenergistics2-rv3-beta-6", ext: 'jar') {
         transitive = false
     }
 
-    compile "net.industrial-craft:industrialcraft-2:2.2.817-experimental:api"
+    // compile "net.industrial-craft:industrialcraft-2:2.2.828-experimental:api"
+    compile (name: "industrialcraft-2-2.2.828-experimental", ext: 'jar')
     compile "api:mfr:1"
     compile "api:railcraft:1"
-    compile "net.sengir.forestry:forestry_1.7.10:4.2.10.58:api"
+    compile (name: "forestry_1.7.10-4.2.16.64", ext: 'jar') 
+    compile (name : "EnderCore-1.7.10-0.2.0.39_beta", ext: 'jar')
+    compile (name : "EnderIO-1.7.10-2.3.0.429_beta", ext: 'jar')
+    compile (name : "Mekanism-1.7.10-9.1.1.1031", ext: 'jar')
     
-    compile name: 'mystcraft', version: '1.7.10-0.12.3.01', classifier: 'api', ext: 'jar'
+    compile (name: 'mystcraft-1.7.10-0.12.3.01', ext: 'jar')
     compile name: 'buildcraft', version: '7.1.16', classifier: 'api', ext: 'jar'
+    compile (name: "immibis-microblocks-59.1.2", ext: 'jar')
+    compile (name: "OpenComputers-MC1.7.10-1.7.2.1166-universal", ext: 'jar')
 }
 
 //================================================
